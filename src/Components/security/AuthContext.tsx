@@ -8,7 +8,7 @@ interface AuthProviderProps {
 interface AuthContextType {
     isAuthenticated: boolean;
     setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-    login: (username: string, password: string) => Promise<boolean>;
+    login: (username: string, password: string) => Promise<number | null>;
     logout: () => void;
     username: string;
 }
@@ -38,15 +38,15 @@ export default function AuthProvider({children} : AuthProviderProps) {
                     setAuthenticated(true);
                     setUsername(username);
                     console.log("success");
-                    return true;
+                    return user.id;
                   } else {
                     setAuthenticated(false);
-                    return false;
+                    return null;
                   }
             })
             .catch((error) => {
                 console.error("Error: ", error);
-                return false;
+                return null;
             });
     }
     function logout() {

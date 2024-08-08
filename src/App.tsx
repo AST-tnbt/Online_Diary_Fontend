@@ -9,7 +9,7 @@ import PostPage from "./Components/PostPage";
 import RegisterPage from "./Components/RegisterPage";
 import AuthProvider, { useAuth } from "./Components/security/AuthContext";
 import WelcomePage from "./Components/WelcomePage";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 
 interface AuthenticateRoutePropType {
   children: ReactNode;
@@ -21,6 +21,7 @@ function AuthenticateRoute({children} : AuthenticateRoutePropType) {
     return children;
   return <Navigate to="/login"/>
 }
+
 export default function App() {
   const authContext = useAuth();
   return (
@@ -31,22 +32,22 @@ export default function App() {
           <Route path="/" element={<WelcomePage />} />
           <Route path="/login" element={<LoginPage />}/>
           <Route path="/register" element={<RegisterPage />}/>
-          <Route path="/home/:username" element={
+          <Route path="/home/:userId" element={
             <AuthenticateRoute>
               <HomePage />
             </AuthenticateRoute>
             }/>
-          <Route path="/account" element={
+          <Route path="/account/:userId" element={
             <AuthenticateRoute>
-              <AccountPage username={`${authContext?.username}`}/>
+              <AccountPage />
             </AuthenticateRoute>}
             />
           <Route path="/addpost" element={
             <AuthenticateRoute>
-              <AddPostPage username={`${authContext?.username}`}/>
+              <AddPostPage />
             </AuthenticateRoute>
           }/>
-          <Route path="/post" element={
+          <Route path="/post/:postId" element={
             <AuthenticateRoute>
               <PostPage username={`${authContext?.username}`}/>
             </AuthenticateRoute>

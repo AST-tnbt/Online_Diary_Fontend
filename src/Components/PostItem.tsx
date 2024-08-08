@@ -1,9 +1,13 @@
-export default function PostItem() {
+interface PostPropType {
+  title: string;
+  date: string;
+}
+export default function PostItem({title, date} : PostPropType) {
   return (
     <div className="w-[30%] m-auto mt-8 border-2 border-[#B5C18E] py-4 px-6 rounded-md hover:shadow-xl hover:cursor-pointer">
-        <h2 className="font-mont text-xl font-medium">Title</h2>
+        <h2 className="font-mont text-xl font-medium">{title}</h2>
         <div className="flex items-center justify-between">
-            <h3 className="font-mont text-md">03-08-2024</h3>
+            <h3 className="font-mont text-md">{date}</h3>
             <div className="flex space-x-4 items-center">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:cursor-pointer">

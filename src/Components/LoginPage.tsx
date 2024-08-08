@@ -10,8 +10,8 @@ export default function LoginPage() {
   const handleSubmit =  async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const isLogin = await authContext?.login(username, pass); 
-    if (isLogin) {
-      navigate(`/home/${username}`);
+    if (isLogin !== null) {
+      navigate(`/home/${isLogin}`);
     } else {
       alert("Invalid username or password");
       setUsername("");

@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 
-interface AddPgaeProp {
-  username : string;
-}
 
-export default function AddPostPage({username} : AddPgaeProp) {
+export default function AddPostPage() {
+  
   return (
     <div className="w-full min-h-screen pt-20 pb-20 bg-gradient-to-t from-[#B5C18E] to-white">
-        <Link to={`/home/${username}`}>
+        <Link to={`/home/`}>
           <h2 className="ml-16 font-mont text-lg font-medium underline">Back to home</h2>
         </Link>
         <div className="w-[80%] min-h-screen m-auto p-10 bg-[#fff] rounded-md mt-20 shadow-sm">
