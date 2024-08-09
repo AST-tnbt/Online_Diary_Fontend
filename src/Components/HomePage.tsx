@@ -67,14 +67,14 @@ export default function HomePage() {
     getPosts();
   }, [userId]);
   return (
-    <div className="w-full min-h-screen pt-20 pb-20 ">
+    <div className="w-full min-h-screen pt-20 pb-20 bg-gradient-to-t from-[#B5C18E] to-white from-10% ">
         <div className="flex justify-between mx-16 items-center mt-4">
           <h1 className="font-mont text-lg">Hello {user?.name},</h1>
           <h2 className="font-mont underline hover:cursor-pointer text-md" onClick={goToAccount}>Manage your account</h2>
         </div>
         <input type="text" placeholder="Search your posts" onChange={(e) => searchPost(e)}className="mt-6 text-lg font-mont border-2 rounded-md p-2 border-[#914F1E] outline-none m-auto w-[40%] block"/>
         <h1 className="font-mont text-center mt-16 text-3xl font-semibold text-[#333]">Your Posts</h1>
-        <div className="bg-[#fff] p-6">
+        <div className="p-6 w-full m-auto mt-4 ">
           {
             postsFilter ? (
               postsFilter.map((post, index) => (
@@ -87,11 +87,9 @@ export default function HomePage() {
               )
             }
         </div>
-        <div className="">
-          <Link to="/addpost">
-            <button className=" p-4 bg-[#B5C18E] font-mont fixed bottom-12 right-16 rounded-md text-lg hover:shadow-xl text-[#914F1E] font-semibold">Add a new post</button>
-          </Link>
-        </div>
+        <Link to={`/addpost/${userId}`}>
+          <button className=" p-4 bg-[#914F1E] font-mont fixed bottom-20 right-16 rounded-md text-lg hover:shadow-xl text-[#fff] font-semibold">Add a new post</button>
+        </Link>
     </div>
   )
 }

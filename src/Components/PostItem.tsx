@@ -4,7 +4,7 @@ interface PostPropType {
 }
 export default function PostItem({title, date} : PostPropType) {
   return (
-    <div className="w-[30%] m-auto mt-8 border-2 border-[#B5C18E] py-4 px-6 rounded-md hover:shadow-xl hover:cursor-pointer">
+    <div className="w-[30%] bg-[#fff] m-auto mt-4 border-2 border-[#B5C18E] py-4 px-6 rounded-md hover:shadow-xl hover:cursor-pointer">
         <h2 className="font-mont text-xl font-medium">{title}</h2>
         <div className="flex items-center justify-between">
             <h3 className="font-mont text-md">{date}</h3>

@@ -23,7 +23,6 @@ function AuthenticateRoute({children} : AuthenticateRoutePropType) {
 }
 
 export default function App() {
-  const authContext = useAuth();
   return (
     <AuthProvider>
       <Router>
@@ -42,14 +41,14 @@ export default function App() {
               <AccountPage />
             </AuthenticateRoute>}
             />
-          <Route path="/addpost" element={
+          <Route path="/addpost/:userId" element={
             <AuthenticateRoute>
               <AddPostPage />
             </AuthenticateRoute>
           }/>
           <Route path="/post/:postId" element={
             <AuthenticateRoute>
-              <PostPage username={`${authContext?.username}`}/>
+              <PostPage />
             </AuthenticateRoute>
             }/>
         </Routes>
