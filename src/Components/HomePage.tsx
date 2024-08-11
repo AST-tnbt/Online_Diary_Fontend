@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom"
 import PostItem from "./PostItem";
-import { getAllPost, getUserById } from "./api/UserApiService";
+import { deletePostById, getAllPost, getUserById } from "./api/AppApiService";
 import { useEffect, useState } from "react";
 
 interface User {
@@ -21,8 +21,8 @@ interface Post {
 export default function HomePage() {
   const {userId} = useParams();
   const [user, setUser] = useState<User | null>(null);
-  const [posts, setPosts] = useState<Post[] | null>(null);
-  const [postsFilter, setPostsFilter] = useState<Post[] | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [postsFilter, setPostsFilter] = useState<Post[]>([]);
   const navigate = useNavigate();
   const goToAccount = () => {
     navigate(`/account/${userId}`);
@@ -62,6 +62,17 @@ export default function HomePage() {
       setPostsFilter(posts);
     }
   }
+  const deletePost = async (id : number) => {
+    if(confirm("Do you want to delete this post?")) {
+      await deletePostById(id)
+        .then(() => {
+          const updatedPosts = posts?.filter(post => post.id !== id) || [];
+          setPosts(updatedPosts);
+          setPostsFilter(updatedPosts);
+        })
+        .catch(error => console.error("Error: ", error));
+    }
+  }
   useEffect(() => {
     getUserInfo();
     getPosts();
@@ -76,16 +87,16 @@ export default function HomePage() {
         <h1 className="font-mont text-center mt-16 text-3xl font-semibold text-[#333]">Your Posts</h1>
         <div className="p-6 w-full m-auto mt-4 ">
           {
-            postsFilter ? (
+            postsFilter.length > 0 ? (
               postsFilter.map((post, index) => (
-                <Link to={`/post/${post.id}`} key={index}>
-                  <PostItem title={post.title} date={post.createAt.toString()}/>
-                </Link>
+                <div key={index}>
+                  <PostItem title={post.title} date={post.createAt.toString()} postId={post.id} deletePost={deletePost}/>
+                </div>
               ))
             ) : (
                 <h2 className="ont-mont text-center mt-16 text-xl font-medium text-[#333]">You don't have any posts.</h2>
               )
-            }
+          }
         </div>
         <Link to={`/addpost/${userId}`}>
           <button className=" p-4 bg-[#914F1E] font-mont fixed bottom-20 right-16 rounded-md text-lg hover:shadow-xl text-[#fff] font-semibold">Add a new post</button>

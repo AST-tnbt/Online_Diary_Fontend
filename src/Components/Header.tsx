@@ -9,9 +9,16 @@ export default function Header() {
         authContext?.logout();
         navigate("/");
     }
+    const goToHome = () => {
+        if (isAuthenticated) {
+            navigate(`/home/${authContext.userId}`);
+        } else {
+            navigate("/")
+        }
+    }
   return (
       <nav className="flex justify-between top-0 left-0 p-4 items-center shadow-lg fixed w-full z-10 bg-[#fff] ">
-          <div className="ml-12">
+          <div className="ml-12 hover:cursor-pointer" onClick={goToHome}>
               <h2 className="text-[#914F1E] font-bold text-4xl font-mont">ONLINE DIARY</h2>
           </div>
           <div className="space-x-4 mr-12 flex">

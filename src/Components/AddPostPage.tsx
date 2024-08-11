@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { sendPost } from "./api/UserApiService";
+import { sendPost } from "./api/AppApiService";
 
 
 export default function AddPostPage() {
@@ -11,7 +11,7 @@ export default function AddPostPage() {
   const savePost = async (event : React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if ((title === "") || (content === "")) {
-      alert("The title or content od the post is empty.")
+      alert("The title or content of the post is empty.")
     } else {
       if (userId !== undefined) {
         await sendPost(parseInt(userId), title, content, new Date())

@@ -10,6 +10,8 @@ import RegisterPage from "./Components/RegisterPage";
 import AuthProvider, { useAuth } from "./Components/security/AuthContext";
 import WelcomePage from "./Components/WelcomePage";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import PageNotFound from "./Components/PageNotFound";
+import UpdatePostPage from "./Components/UpdatePostPage";
 
 interface AuthenticateRoutePropType {
   children: ReactNode;
@@ -51,6 +53,12 @@ export default function App() {
               <PostPage />
             </AuthenticateRoute>
             }/>
+          <Route path="/post/update/:postId" element={
+            <AuthenticateRoute>
+              <UpdatePostPage />
+            </AuthenticateRoute>
+            }/>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </Router>

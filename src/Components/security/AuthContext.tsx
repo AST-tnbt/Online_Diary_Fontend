@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { getAllUser } from "../api/UserApiService";
+import { getAllUser } from "../api/AppApiService";
 
 
 interface AuthProviderProps {
@@ -37,7 +37,6 @@ export default function AuthProvider({children} : AuthProviderProps) {
                 if (user) {
                     setAuthenticated(true);
                     setUserId(user.id);
-                    console.log("success");
                     return user.id;
                   } else {
                     setAuthenticated(false);
