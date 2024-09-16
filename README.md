@@ -71,4 +71,4 @@ In my case, I am running MySQL on Docker. If you are doing the same, follow thes
     ```
     *If you are not using MySQL on Docker, simply follow step 2 and adjust the configuration according to your local MySQL setup.*
 
-    #### All done! Just run the project and If you are not using MySQL on Docker, simply follow step 2 and adjust the configuration according to your local MySQL setup.see it.
+    #### All done! Just run the project and see it.
