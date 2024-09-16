@@ -1,10 +1,4 @@
-import axios from "axios"
-
-const apiClient = axios.create(
-    {
-        baseURL : "http://localhost:8080" 
-    }
-)
+import { apiClient } from "./AppClient";
 
 export const callHelloWorld = () =>
     apiClient.get("/hello")
